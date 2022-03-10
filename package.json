@@ -1,14 +1,10 @@
 {
-  "name": "hosting-full-stack-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "install": "npm i npm-run-all",
     "back-install": "cd udagram-api && npm i",
     "front-install": "cd udagram-frontend && npm i",
-    "back-build": "cd udagram-api && npm run build",
-    "front-build": "cd udagram-frontend && npm run build",
+    "back-build": "cd udagram-api && npm-run-all clean build",
+    "front-build": "cd udagram-frontend && npm-run-all lint build",
     "back-start": "cd udagram-api && npm run start",
     "front-start": "cd udagram-frontend && npm run start",
     "back-deploy": "cd udagram-api && npm run deploy",
@@ -19,15 +15,5 @@
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/abdulashref333/hosting-full-stack-app.git"
-  },
-  "author": "abdulrahman ashraf",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/abdulashref333/hosting-full-stack-app/issues"
-  },
-  "homepage": "https://github.com/abdulashref333/hosting-full-stack-app#readme"
+  }
 }
