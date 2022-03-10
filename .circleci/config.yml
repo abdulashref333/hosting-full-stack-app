@@ -13,6 +13,10 @@ jobs:
       - checkout
       - aws-cli/setup
       - eb/setup
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
           name: Install
           command: |
@@ -25,6 +29,10 @@ jobs:
           name: Back-End Install
           command: |
             npm run back-install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Front-End Build
           command: |
@@ -41,3 +49,11 @@ jobs:
           name: Deploy Back
           command: |
             npm run back-deploy
+workflows:
+  build_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
